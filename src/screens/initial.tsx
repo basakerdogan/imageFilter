@@ -3,7 +3,8 @@ import {View, Text, Button} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import Profile from '../src/screens/profile';
+import Profile from './profile';
+import SimpleImagePicker from '../screens/ImagePicker';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -21,11 +22,19 @@ function PostsPage({navigation}: any) {
     </View>
   );
 }
-function DetailsPage() {
+function ChoosePhooto() {
   return (
-    <View style={{flex: 1}}>
-      <Text>Details Page</Text>
-    </View>
+
+    
+    
+  function () {
+      return (
+      
+     
+      <SimpleImagePicker />
+      
+      );
+    }
   );
 }
 
@@ -52,7 +61,7 @@ function HomeStack() {
   return (
     <Home.Navigator>
       <Home.Screen name="Posts" component={PostsPage} />
-      <Home.Screen name="Details" component={DetailsPage} />
+      
     </Home.Navigator>
   );
 }

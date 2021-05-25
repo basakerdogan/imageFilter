@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
-import { STYLES, COLORS } from './Styles';
+import { STYLES, COLORS } from './styles';
 import ImagePicker from 'react-native-image-picker';
 
 export default function SimpleImagePicker() {

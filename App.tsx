@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Image,Alert } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 
 function App() {
-const [resourcePath,setResourcePath]=useState(null);
+const [resourcePath,setResourcePath]=useState<any>(null);
 
  const selectFile = () => {
     var options = {
@@ -24,7 +24,8 @@ const [resourcePath,setResourcePath]=useState(null);
     };
     
     
-    ImagePicker.launchImageLibrary({mediaType:'photo'},()=> {
+    launchImageLibrary({mediaType:'photo'},(response)=> {
+      setResourcePath(response.uri);
      
     });
   };
@@ -35,17 +36,15 @@ const [resourcePath,setResourcePath]=useState(null);
         <View style={styles.container}>
           <Image
             source={{
-              uri: 'data:image/jpeg;base64,' + resourcePath.data,
+              uri: resourcePath?resourcePath:null,
             }}
             style={{ width: 100, height: 100 }}
           />
           <Image
-            source={{ uri: resourcePath.uri }}
+            source={{ uri:  resourcePath?resourcePath:null }}
             style={{ width: 200, height: 200 }}
           />
-          <Text style={{ alignItems: 'center' }}>
-            {resourcePath.uri}
-          </Text>
+        
 
           <TouchableOpacity onPress={selectFile} style={styles.button}  >
               <Text style={styles.buttonText}>Select File</Text>

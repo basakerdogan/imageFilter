@@ -4,8 +4,21 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Image,Alert } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
+import {
+  Grayscale,
+  Sepia,
+  Tint,
+  ColorMatrix,
+  concatColorMatrices,
+  invert,
+  contrast,
+  saturate,
+} from 'react-native-color-matrix-image-filters'
+import { onChange } from 'react-native-reanimated';
+
 
 function App() {
+  
 const [resourcePath,setResourcePath]=useState<any>(null);
 
  const selectFile = () => {
@@ -38,16 +51,20 @@ const [resourcePath,setResourcePath]=useState<any>(null);
             source={{
               uri: resourcePath?resourcePath:null,
             }}
-            style={{ width: 100, height: 100 }}
+            style={{ width: 300, height: 300 }}
           />
           <Image
             source={{ uri:  resourcePath?resourcePath:null }}
-            style={{ width: 200, height: 200 }}
+            style={{ width: 300, height: 280 ,tintColor: 'red', position: 'absolute', opacity: 0.3 }}
+           
           />
         
 
-          <TouchableOpacity onPress={selectFile} style={styles.button}  >
+          <TouchableOpacity onPress={selectFile}  style={styles.button}  >
+          
+        
               <Text style={styles.buttonText}>Select File</Text>
+              
           </TouchableOpacity>       
         </View>
       </View>
